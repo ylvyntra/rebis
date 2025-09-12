@@ -1,0 +1,96 @@
+\documentclass[12pt]{tufte-handout}
+
+
+% \author[Gary O'Neil Tedeschi]{Gary O'Neil Tedeschi, Bioinformatics Scientist}
+
+%\date{October 8, 2024} % without \date command, current date is supplied
+
+%\geometry{showframe} % display margins for debugging page layout
+
+%% My Additions
+
+% Fonts
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmathfont{Euler-Math.otf}
+
+% Recommended pairing with Euler: Palatino-style text
+% \setmainfont{TeX Gyre Pagella}
+% \setsansfont{TeX Gyre Heros}
+% \setmonofont{DejaVu Sans Mono}
+
+% Alternatives to try (uncomment one block to test)
+% \setmainfont{Palatino}            % macOS Palatino Linotype
+% \setsansfont{Helvetica Neue}      % macOS Helvetica Neue
+% \setmonofont{Menlo}
+%
+% \setmainfont{URW Palladio L}      % Another Palatino variant
+% \setsansfont{TeX Gyre Heros}
+% \setmonofont{DejaVu Sans Mono}
+%
+%% Matched serif+math pair (if you decide to drop Euler)
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+% \setmathfont{Libertinus Math}
+
+% Map U+2234 (∴) and U+2235 (∵) to DejaVu Sans so they always render
+\usepackage{newunicodechar}
+\newfontfamily\symbolsfont{DejaVu Sans}
+\newunicodechar{∴}{{\symbolsfont∴}}
+\newunicodechar{∵}{{\symbolsfont∵}}
+
+% Title moved after Unicode mappings so ∴/∵ are handled there too
+\title{Introduction to A∴ I∴}
+
+
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize} % default font size for fancy-verbatim environments
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}} % command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}} % optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}} % (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}} % environment name
+\newcommand{\docpkg}[1]{\texttt{#1}} % package name
+\newcommand{\doccls}[1]{\texttt{#1}} % document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}} % document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}} % command specification environment
+
+\usepackage{hyperref}
+% \renewcommand{\labelitemi}{} % no bullets in itemized lists
+% \renewcommand{\labelitemi}{\scriptsize$\cdot$}
+% \renewcommand{\labelitemi}{\scriptsize$\bullet$}
+
+\usepackage{xcolor}
+% \renewcommand{\labelitemi}{\textcolor{gray}{\scriptsize$\bullet$}}
+
+\usepackage{pifont}
+\renewcommand{\labelitemi}{\textcolor{gray}{\tiny\ding{109}}} % open circles
+% \renewcommand{\labelitemi}{\textcolor{gray}{\tiny\ding{111}}} % open squares
+
+
+\begin{document}
+
+\maketitle % this prints the handout title, author, and date
+
+\input{body}
+
+% Include these works in the bibliography even if not cited inline yet
+\nocite{crowley-gems,mccarthy-quareia-v1,smith-wealth-1994-ml,darwin-origin-1998-ml}
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+
+
+
+\end{document}
