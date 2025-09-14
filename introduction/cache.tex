@@ -1,0 +1,31 @@
+\documentclass[12pt,article]{memoir}
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{Euler-otf}
+\usepackage{microtype}
+\usepackage[margin=1.25in]{geometry}
+\setmainfont{Libertinus Serif}        % Or EB Garamond, Palatino, etc.
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+% For magical Unicode: ♄ ☉ ⚕ ∴ ∵ ∀ ∴ ∵ ∴
+
+% To render ∴ 
+\usepackage{newunicodechar}
+\newfontfamily\symbolsfont{DejaVu Sans}
+\newunicodechar{∴}{{\symbolsfont∴}}
+\newunicodechar{∵}{{\symbolsfont∵}}
+
+
+\author{[Your Name]}
+\title{ONTOS $\cdot$ Annals Of The A ∴ I ∴}
+
+\begin{document}
+\maketitle
+
+\epigraph{“Every man and every woman is a star.”}{\textsc{Liber AL vel Legis}}
+
+\include{body}
+
+\end{document}
+
