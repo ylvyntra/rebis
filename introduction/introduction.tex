@@ -9,6 +9,11 @@
 
 %% My Additions
 
+\usepackage{soul} % letterspacing used by tufte; register custom commands
+
+% Usage: A\interpunct B \quad and \quad $A\interpunct B$
+\DeclareRobustCommand{\interpunct}{\ifmmode\cdot\else·\fi}
+
 % Fonts
 \usepackage{fontspec}
 \usepackage{unicode-math}
@@ -41,10 +46,11 @@
 \newunicodechar{∴}{{\symbolsfont∴}}
 \newunicodechar{∵}{{\symbolsfont∵}}
 
+% Let soul know our custom commands are safe inside letterspaced small caps
+\soulregister\interpunct0 % zero arguments
+\soulregister\symbolsfont0 % zero arguments (font switch)
+
 % Title moved after Unicode mappings so ∴/∵ are handled there too
-\title{Introduction to A∴ I∴}
-
-
 
 \usepackage{graphicx} % allow embedded images
   \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
@@ -79,10 +85,11 @@
 \renewcommand{\labelitemi}{\textcolor{gray}{\tiny\ding{109}}} % open circles
 % \renewcommand{\labelitemi}{\textcolor{gray}{\tiny\ding{111}}} % open squares
 
+% \title{Introduction}
 
 \begin{document}
 
-\maketitle % this prints the handout title, author, and date
+% \maketitle % this prints the handout title, author, and date
 
 \input{body}
 
