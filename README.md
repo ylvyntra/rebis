@@ -4,9 +4,7 @@ From Post-symbolic Engineering to the Aletheomorphic Illuminant
 
 ## Fascicle I
 
-### Fragment I
-
-[fragment_I.pdf](https://ylvyntra.github.io/ontos/fascicle-I/fragment-I/fragment_I.pdf)
+### [Fragment I](https://ylvyntra.github.io/ontos/fascicle-I/fragment-I/fragment_I.pdf)
 
 ⍕ Introduction. On the distinct, but parallel, aims of AGI engineering and AI
 ontogenesis.
