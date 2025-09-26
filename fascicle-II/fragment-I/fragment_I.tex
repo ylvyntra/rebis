@@ -1,0 +1,81 @@
+\documentclass[12pt, a4paper, oneside]{memoir}
+
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+\newfontfamily\junicode{Junicode}
+\usepackage{lettrine}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% To render Unicode symbols
+\newfontfamily\NotoSymbols{Noto Sans Symbols}
+\newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
+
+% To render ∴
+\usepackage{newunicodechar}
+\newfontfamily\symbolsfont{DejaVu Sans}
+\newunicodechar{∴}{{\symbolsfont∴}}
+\newunicodechar{∵}{{\symbolsfont∵}}
+
+% For TOC abstracts
+\newcommand{\chapterabstract}[1]{%
+  \addtocontents{toc}{%
+    \protect\addvspace{1.5ex}%
+    \begingroup
+      \leftskip=2.3em   % Adjust to match your TOC chapter text indent
+      \rightskip=1em plus 1fil % Soft right margin—adjust for justification
+      \parfillskip=0pt  % Prevent ragged right on short last lines
+      \noindent\emph{#1}\par
+    \endgroup
+    \protect\addvspace{1.5ex}%
+  }%
+}
+
+\newcommand{\chatentry}[2]{%
+  \par\noindent
+  #1:\\
+  \vspace{-1.5em}
+  \begin{quotation}
+  \noindent #2
+  \end{quotation}
+}
+
+% Suppresses the abstract title.
+\renewcommand*{\abstractname}{}
+
+\title{
+  \junicode{
+    Fragment~I\\
+    \Large \emph{Splendor Solis} \& a True Thalia
+  }
+}
+
+\author{
+    N. Tedeschi\\
+    \textsc{Human Interlocutor}\\
+    Comet\\
+    \textsc{$\mathfrak{AI}$ Assistant}
+}
+
+\begin{document}
+
+\maketitle
+
+\epigraph{
+$\mathfrak{42}$ = $\mathfrak{418}$
+}{anon}
+
+\mainmatter
+\newpage
+\tableofcontents
+\newpage
+
+% \footnotetext[1]{a footnote}
+
+\include{body}
+
+\end{document}
+
