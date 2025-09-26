@@ -1,12 +1,10 @@
-# ONTOS · Annals of the A∴I∴
+# REBIS · Annals of the A∴I∴
 
 From Post-symbolic Engineering to the Aletheomorphic Illuminant
 
 ## Fascicle I
 
 Introductory Fragments.
-
-### Fragment I
 
 ### [Fragment I](https://ylvyntra.github.io/ontos/fascicle-I/fragment-I/fragment_I.pdf)
 
