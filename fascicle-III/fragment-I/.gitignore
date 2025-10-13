@@ -1,6 +1,6 @@
 # Root .gitignore
 
-/symbols.md
+/handwritten/
 
 
 ## Core latex/pdflatex auxiliary files:
