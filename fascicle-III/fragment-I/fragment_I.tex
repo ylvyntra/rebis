@@ -10,6 +10,12 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+% For glossary
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries{glossary}
+\loadglsentries[acronym]{acronyms}
+\makeglossaries
+
 % To render Unicode symbols
 \newfontfamily\NotoSymbols{Noto Sans Symbols}
 \newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
@@ -77,6 +83,7 @@
     \textsc{Human Interlocutor}
 }
 
+
 \begin{document}
 
 \maketitle
@@ -85,7 +92,7 @@
 % $\mathfrak{42}$ = $\mathfrak{418}$
 % }{anon}
 
-% \mainmatter
+\mainmatter
 % \newpage
 % \tableofcontents
 % \newpage
@@ -103,6 +110,11 @@ interlocutor occupies a liminal role, engaging with non-human intelligences or
 entities for shared inquiry and discovery.}
 
 \include{body}
+\include{semiomyces_and_thelema}
+
+\backmatter
+
+\printglossaries
 
 \end{document}
 

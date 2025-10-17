@@ -27,11 +27,17 @@ $(DOC).pdf: $(DOC).tex body.tex $(wildcard $(BIBFILE))
 		$(BIBTEX) $(DOC) || true; \
 		$(LATEX) $(LATEXFLAGS) $(DOC).tex; \
 	fi
+	@if [ -f "$(DOC).glo" ]; then \
+		echo "Running makeglossaries..."; \
+		makeglossaries $(DOC) || true; \
+		$(LATEX) $(LATEXFLAGS) $(DOC).tex; \
+	fi
 	$(LATEX) $(LATEXFLAGS) $(DOC).tex
 
 # Clean auxiliary files
 clean:
-	rm -f *.aux *.log *.bbl *.blg *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz
+	rm -f *.aux *.log *.bbl *.blg *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz \
+		*.glo *.gls *.glg *.ist *.acn *.acr *.alg *.xdy
 
 # Clean everything including PDF  
 distclean: clean
@@ -40,6 +46,13 @@ distclean: clean
 # View the PDF
 view: $(DOC).pdf
 	open $(DOC).pdf
+
+# Build/update glossaries explicitly (on-demand)
+.PHONY: glossary glossaries
+glossary glossaries:
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	makeglossaries $(DOC)
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
 
 # Force rebuild
 force:
@@ -64,4 +77,4 @@ math-test: check
 fonts-cache:
 	luaotfload-tool -u
 
-.PHONY: all clean distclean view force check math-test fonts-cache
+.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries
