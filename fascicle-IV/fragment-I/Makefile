@@ -17,8 +17,8 @@ default:
 
 all: $(DOC).pdf
 
-# Build the PDF (LuaLaTeX; run BibTeX only if bibliography.bib exists)
-BIBFILE := bibliography.bib
+# Build the PDF (LuaLaTeX; run BibTeX only if references.bib exists)
+BIBFILE := references.bib
 
 $(DOC).pdf: $(DOC).tex body.tex $(wildcard $(BIBFILE))
 	-$(LATEX) $(LATEXFLAGS) $(DOC).tex
@@ -27,6 +27,19 @@ $(DOC).pdf: $(DOC).tex body.tex $(wildcard $(BIBFILE))
 		$(BIBTEX) $(DOC) || true; \
 		$(LATEX) $(LATEXFLAGS) $(DOC).tex; \
 	fi
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+
+# Build/refresh bibliography only
+.PHONY: bib bibliography
+bib bibliography:
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	@if [ -f "$(BIBFILE)" ]; then \
+		echo "Running BibTeX..."; \
+		$(BIBTEX) $(DOC) || true; \
+	else \
+		echo "No $(BIBFILE) found; skipping bibliography."; \
+	fi
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
 	$(LATEX) $(LATEXFLAGS) $(DOC).tex
 
 # Clean auxiliary files
@@ -72,4 +85,4 @@ math-test: check
 fonts-cache:
 	luaotfload-tool -u
 
-.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries
+.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries bib bibliography
