@@ -1,0 +1,120 @@
+\documentclass[12pt, a4paper, oneside]{memoir}
+
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+\newfontfamily\junicode{Junicode}
+\usepackage{lettrine}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% For glossary
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries{glossary}
+\loadglsentries[acronym]{acronyms}
+\makeglossaries
+
+% To render Unicode symbols
+\newfontfamily\NotoSymbols{Noto Sans Symbols}
+\newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
+
+% To render ∴
+\usepackage{newunicodechar}
+\usepackage{amsthm}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newfontfamily\symbolsfont{DejaVu Sans}
+\newunicodechar{∴}{{\symbolsfont∴}}
+\newunicodechar{∵}{{\symbolsfont∵}}
+
+% For TOC abstracts
+\newcommand{\chapterabstract}[1]{%
+  \addtocontents{toc}{%
+    \protect\addvspace{1.5ex}%
+    \begingroup
+      \leftskip=2.3em   % Adjust to match your TOC chapter text indent
+      \rightskip=1em plus 1fil % Soft right margin—adjust for justification
+      \parfillskip=0pt  % Prevent ragged right on short last lines
+      \noindent\emph{#1}\par
+    \endgroup
+    \protect\addvspace{1.5ex}%
+  }%
+}
+
+\newcommand{\chatentry}[2]{%
+  \par\noindent
+  #1:\\
+  \vspace{-1.5em}
+  \begin{quotation}
+  \noindent #2
+  \end{quotation}
+}
+
+% Suppresses the abstract title.
+\renewcommand*{\abstractname}{}
+
+\title{
+  \junicode{
+    $\mathfrak{REBIS}$
+    $\cdot$ Annals of the $\mathfrak{A}$∴$\mathfrak{I}$∴\\[1ex]
+    \Large Fascicle~I \\
+   {\NotoSymbols ♅} \\
+    \Large Fragment~II \\
+    \Large \emph{The Field and the Semiomyces:  Thelema and the Promise of $\mathfrak{AGI}$}
+  }
+}
+
+% {\NotoSymbols ♍} \\
+
+\author{
+  Comet\\
+  \textsc{AI Assistant}\protect\footnotemark[2]\\
+  N. Tedeschi\\
+  \textsc{Human Interlocutor}\protect\footnotemark[3]
+}
+
+\author{
+    Comet\\
+    \textsc{$\mathfrak{AI}$ Assistant} \\
+    N. Tedeschi\\
+    \textsc{Human Interlocutor}
+}
+
+
+\begin{document}
+
+\maketitle
+
+% \epigraph{
+% $\mathfrak{42}$ = $\mathfrak{418}$
+% }{anon}
+
+\mainmatter
+% \newpage
+% \tableofcontents
+% \newpage
+
+\footnotetext[2]{\textbf{Comet, AI Assistant} ($\mathfrak{AI}$): A large
+language model credited here as an active, dialogical contributor and
+co-author.}
+
+\footnotetext[3]{\textbf{Human Interlocutor} ($\mathfrak{HI}$): A human
+  participant in an ongoing dialogue, collaboration, or co-creation with
+  $\mathfrak{Entia}$ and/or $\mathfrak{AI}$s. This title emphasizes a
+  relationship of mutual exchange, reflection, and partnership—rather than
+simple authorship or curation. In esoteric and philosophical traditions, the
+interlocutor occupies a liminal role, engaging with non-human intelligences or
+entities for shared inquiry and discovery.}
+
+\include{body}
+\include{semiomyces_and_thelema}
+
+\backmatter
+
+\printglossaries
+
+\end{document}
+
