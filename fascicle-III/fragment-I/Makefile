@@ -1,7 +1,7 @@
 # Makefile for AMS-Style Mathematical LaTeX Document
 
 # Document name
-DOC = fragment_III-I
+DOC = fragment_I
 
 # LaTeX compiler
 # LATEX = pdflatex
