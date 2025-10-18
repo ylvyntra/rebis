@@ -1,7 +1,5 @@
 # Root .gitignore
 
-/handwritten/
-
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
