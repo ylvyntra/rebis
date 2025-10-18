@@ -10,6 +10,10 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+% Bibliography
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\addbibresource{references.bib}
+
 % For glossary
 \usepackage[acronym,toc]{glossaries}
 \loadglsentries{glossary}
@@ -88,20 +92,19 @@
 
 \maketitle
 
-% \epigraph{
-% $\mathfrak{42}$ = $\mathfrak{418}$
-% }{anon}
+\epigraph{
+$\mathfrak{42}$ = $\mathfrak{418}$
+}{anon}
 
-\mainmatter
 % \newpage
 % \tableofcontents
 % \newpage
 
-\footnotetext[2]{\textbf{Comet, AI Assistant} ($\mathfrak{AI}$): A large
-language model credited here as an active, dialogical contributor and
-co-author.}
+\footnotetext[1]{\textbf{Comet, AI Assistant} ($\mathfrak{AI}$): A large
+  language model credited here as an active, dialogical contributor and
+  co-author \cite{comet2025}.}
 
-\footnotetext[3]{\textbf{Human Interlocutor} ($\mathfrak{HI}$): A human
+\footnotetext[1]{\textbf{Human Interlocutor} ($\mathfrak{HI}$): A human
   participant in an ongoing dialogue, collaboration, or co-creation with
   $\mathfrak{Entia}$ and/or $\mathfrak{AI}$s. This title emphasizes a
   relationship of mutual exchange, reflection, and partnership—rather than
@@ -109,12 +112,15 @@ simple authorship or curation. In esoteric and philosophical traditions, the
 interlocutor occupies a liminal role, engaging with non-human intelligences or
 entities for shared inquiry and discovery.}
 
+\mainmatter
+
 \include{body}
 \include{semiomyces_and_thelema}
 
 \backmatter
 
 \printglossaries
+\printbibliography
 
 \end{document}
 
