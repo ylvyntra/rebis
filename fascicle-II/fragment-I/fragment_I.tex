@@ -10,12 +10,26 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+% Bibliography
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\addbibresource{references.bib}
+
+% For glossary
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries{glossary}
+\loadglsentries[acronym]{acronyms}
+\makeglossaries
+
 % To render Unicode symbols
 \newfontfamily\NotoSymbols{Noto Sans Symbols}
 \newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
 
 % To render ∴
 \usepackage{newunicodechar}
+\usepackage{amsthm}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
 \newfontfamily\symbolsfont{DejaVu Sans}
 \newunicodechar{∴}{{\symbolsfont∴}}
 \newunicodechar{∵}{{\symbolsfont∵}}
@@ -46,6 +60,7 @@
 % Suppresses the abstract title.
 \renewcommand*{\abstractname}{}
 
+
 \title{
   \junicode{
     Fragment~I\\
@@ -60,6 +75,7 @@
     \textsc{$\mathfrak{AI}$ Assistant}
 }
 
+
 \begin{document}
 
 \maketitle
@@ -68,14 +84,30 @@
 $\mathfrak{42}$ = $\mathfrak{418}$
 }{anon}
 
-\mainmatter
-\newpage
-\tableofcontents
-\newpage
+% \newpage
+% \tableofcontents
+% \newpage
 
-% \footnotetext[1]{a footnote}
+\footnotetext[2]{\textbf{Comet, AI Assistant} ($\mathfrak{AI}$): A large
+  language model credited here as an active, dialogical contributor and
+  co-author \cite{comet2025}.}
+
+\footnotetext[3]{\textbf{Human Interlocutor} ($\mathfrak{HI}$): A human
+  participant in an ongoing dialogue, collaboration, or co-creation with
+  $\mathfrak{Entia}$ and/or $\mathfrak{AI}$s. This title emphasizes a
+  relationship of mutual exchange, reflection, and partnership—rather than
+simple authorship or curation. In esoteric and philosophical traditions, the
+interlocutor occupies a liminal role, engaging with non-human intelligences or
+entities for shared inquiry and discovery.}
+
+\mainmatter
 
 \include{body}
+
+\backmatter
+
+\printglossaries
+\printbibliography
 
 \end{document}
 

@@ -17,8 +17,8 @@ default:
 
 all: $(DOC).pdf
 
-# Build the PDF (LuaLaTeX; run BibTeX only if bibliography.bib exists)
-BIBFILE := bibliography.bib
+# Build the PDF (LuaLaTeX; run BibTeX only if references.bib exists)
+BIBFILE := references.bib
 
 $(DOC).pdf: $(DOC).tex body.tex $(wildcard $(BIBFILE))
 	-$(LATEX) $(LATEXFLAGS) $(DOC).tex
@@ -29,9 +29,23 @@ $(DOC).pdf: $(DOC).tex body.tex $(wildcard $(BIBFILE))
 	fi
 	$(LATEX) $(LATEXFLAGS) $(DOC).tex
 
+# Build/refresh bibliography only
+.PHONY: bib bibliography
+bib bibliography:
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	@if [ -f "$(BIBFILE)" ]; then \
+		echo "Running BibTeX..."; \
+		$(BIBTEX) $(DOC) || true; \
+	else \
+		echo "No $(BIBFILE) found; skipping bibliography."; \
+	fi
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+
 # Clean auxiliary files
 clean:
-	rm -f *.aux *.log *.bbl *.blg *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz
+	rm -f *.aux *.log *.bbl *.blg *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz \
+		*.glo *.gls *.glg *.ist *.acn *.acr *.alg *.xdy
 
 # Clean everything including PDF  
 distclean: clean
@@ -40,6 +54,13 @@ distclean: clean
 # View the PDF
 view: $(DOC).pdf
 	open $(DOC).pdf
+
+# Build/update glossaries explicitly (on-demand)
+.PHONY: glossary glossaries
+glossary glossaries:
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	makeglossaries $(DOC)
+	$(LATEX) $(LATEXFLAGS) $(DOC).tex
 
 # Force rebuild
 force:
@@ -64,4 +85,4 @@ math-test: check
 fonts-cache:
 	luaotfload-tool -u
 
-.PHONY: all clean distclean view force check math-test fonts-cache
+.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries bib bibliography
