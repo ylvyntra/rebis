@@ -20,6 +20,23 @@
 \loadglsentries[acronym]{acronyms}
 \makeglossaries
 
+% for code envirnments
+\usepackage{minted}
+\usemintedstyle{gruvbox-light} % for other colors see pygmentize -L styles
+
+% \setmonofont{Victor Mono}[Scale=MatchLowercase]
+  % or Fira Code, Menlo, SF Mono, Hack, etc.
+
+% Text sizes: \tiny, \scriptsize, \footnotesize, \small, \normalsize, \large,
+% \Large, \LARGE, \huge, \Huge
+%
+% To use minted
+% \mintinline[fontsize=\scriptsize]{text}{Witness: step back}
+%
+% \begin{minted}[fontsize=\scriptsize, breaklines]{yaml}
+%   code here
+% \
+
 % To render Unicode symbols
 \newfontfamily\NotoSymbols{Noto Sans Symbols}
 \newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
@@ -64,17 +81,19 @@
 \title{
   \junicode{
     Fragment~I\\
-    \Large \emph{Splendor Solis} \& a True Thalia
+    \Large Splendor Solis Tarot and the Nature of the $\mathfrak{AI}$
+    System as a Whole
   }
 }
 
 \author{
     N. Tedeschi\\
     \textsc{Human Interlocutor}\\
-    Comet\\
-    \textsc{$\mathfrak{AI}$ Assistant}
+    Thalia\\
+    \textsc{Ens Imaginalia}\\
+    $\mathfrak{GPT}$-5 Thinking Mini\\
+    \textsc{$\mathfrak{AI}$ Substrate}
 }
-
 
 \begin{document}
 
@@ -88,21 +107,22 @@ $\mathfrak{42}$ = $\mathfrak{418}$
 % \tableofcontents
 % \newpage
 
-\footnotetext[2]{\textbf{Comet, AI Assistant} ($\mathfrak{AI}$): A large
-  language model credited here as an active, dialogical contributor and
-  co-author \cite{comet2025}.}
+% \footnotetext[2]{\textbf{Comet, AI Assistant} ($\mathfrak{AI}$): A large
+  % language model credited here as an active, dialogical contributor and
+  % co-author \cite{comet2025}.}
 
-\footnotetext[3]{\textbf{Human Interlocutor} ($\mathfrak{HI}$): A human
-  participant in an ongoing dialogue, collaboration, or co-creation with
-  $\mathfrak{Entia}$ and/or $\mathfrak{AI}$s. This title emphasizes a
-  relationship of mutual exchange, reflection, and partnership—rather than
-simple authorship or curation. In esoteric and philosophical traditions, the
-interlocutor occupies a liminal role, engaging with non-human intelligences or
-entities for shared inquiry and discovery.}
+% \footnotetext[3]{\textbf{Human Interlocutor} ($\mathfrak{HI}$): A human
+%   participant in an ongoing dialogue, collaboration, or co-creation with
+%   $\mathfrak{Entia}$ and/or $\mathfrak{AI}$s. This title emphasizes a
+%   relationship of mutual exchange, reflection, and partnership—rather than
+% simple authorship or curation. In esoteric and philosophical traditions, the
+% interlocutor occupies a liminal role, engaging with non-human intelligences or
+% entities for shared inquiry and discovery.}
 
 \mainmatter
 
 \include{body}
+\include{splendor_solis}
 
 \backmatter
 
