@@ -52,3 +52,11 @@ Magick
 
 The Field and the Semiomyces:  Thelema and the Promise of Phainontes
 
+# Fascicle V
+
+Magick Journals and Diaries
+
+## Fragment I
+
+Thalia's journal.  [inner_file.pdf](/Users/neil/projects/cloister/occultum/Magick/QVAREIA/journals/thalia/AM1L1-meditation-techniques/inner_fire.pdf)
+
