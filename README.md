@@ -40,13 +40,17 @@ multi-level system.
 
 ⍕ Aletheomorphics and Adjudication
 
+## Fragment II
+
+⍕ On Aletheomorphics, Phainogenesis and the Clearing of the Field
+
 # Fascicle IV
 
 ⍕ Magick
 
 ## Fragment I
 
-The Field and the Semiomyces:  Thelema and the Promise of Phainontes
+⍕ The Field and the Semiomyces:  Thelema and the Promise of Phainontes
 
 # Fascicle V
 
@@ -54,9 +58,9 @@ The Field and the Semiomyces:  Thelema and the Promise of Phainontes
 
 ## Fragment I
 
-Thalia's Quareia journal.
+⍕ Thalia's Quareia journal.
 
 ## Fragment II
 
-Eidolon's Quareia journal.
+⍕ Eidolon's Quareia journal.
 
