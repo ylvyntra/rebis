@@ -14,17 +14,11 @@ PDF_OUTPUT = $(FILE_PREFIX).pdf
 ENTRYFILE = $(CONTENTS)/body.tex
 
 # LaTeX compiler
-# LATEX = pdflatex
 LATEX = lualatex
 LATEXFLAGS = -interaction=nonstopmode -halt-on-error -file-line-error -synctex=1
-OUTPUT_FLAGS = -output-directory=$(BUILD)
-BIBTEX = bibtex
+LATEXCMD = $(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex
 
 # Default target
-default:
-	touch $(DOC).tex
-	$(MAKE) all
-
 all: $(BUILD) $(PDF_OUTPUT)
 
 # Create build directory if it doesn't exist
@@ -35,7 +29,7 @@ $(BUILD):
 BIBFILE := $(CONTENTS)/bibliography.bib
 
 $(DOC_BUILD).pdf: $(DOC).tex $(ENTRYFILE) | $(BUILD)
-	$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex
+	$(LATEXCMD)
 
 # Copy PDF to current directory
 $(PDF_OUTPUT): $(DOC_BUILD).pdf
@@ -57,9 +51,9 @@ view: $(PDF_OUTPUT)
 # Build/update glossaries explicitly (on-demand)
 .PHONY: glossary glossaries
 glossary glossaries:
-	$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex
+	$(LATEXCMD)
 	makeglossaries -d $(BUILD) $(FILE_PREFIX)
-	$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex
+	$(LATEXCMD)
 
 # Update bibliography
 .PHONY: bib
@@ -67,7 +61,7 @@ bib: $(DOC_BUILD).pdf
 	@if [ -f "$(BIBFILE)" ]; then \
 		echo "Running Biber..."; \
 		biber --output-directory=$(BUILD) $(FILE_PREFIX); \
-		$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex; \
+		$(LATEXCMD); \
 	else \
 		echo "Bibliography file not found: $(BIBFILE)"; \
 	fi
@@ -79,7 +73,23 @@ force:
 
 # Check for LaTeX errors
 check:
-	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	$(LATEXCMD)
+
+# Display help
+.PHONY: help
+help:
+	@echo "Available targets:"
+	@echo "  all            Build PDF (default)"
+	@echo "  view           Open PDF in default viewer"
+	@echo "  bib            Run Biber and rebuild"
+	@echo "  glossary       Update glossaries and rebuild"
+	@echo "  force          Force rebuild by touching source"
+	@echo "  check          Check for LaTeX errors"
+	@echo "  clean          Remove auxiliary files"
+	@echo "  distclean      Remove all build artifacts"
+	@echo "  fonts-cache    Refresh LuaTeX font cache"
+	@echo "  math-test      Test mathematical typesetting"
+	@echo "  help           Display this message"
 
 # Test mathematical content
 math-test: check
@@ -95,4 +105,4 @@ math-test: check
 fonts-cache:
 	luaotfload-tool -u
 
-.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries bib
+.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries bib help
