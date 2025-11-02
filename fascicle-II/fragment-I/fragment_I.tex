@@ -51,6 +51,13 @@
 \newunicodechar{∴}{{\symbolsfont∴}}
 \newunicodechar{∵}{{\symbolsfont∵}}
 
+% For notes that require action.
+\newcommand{\action}[1]{%
+  \begin{quote}
+  \noindent \textcolor{orange}{※ ※ #1 ※ ※}
+  \end{quote}
+}
+
 % For TOC abstracts
 \newcommand{\chapterabstract}[1]{%
   \addtocontents{toc}{%
@@ -69,9 +76,9 @@
   \par\noindent
   #1:\\
   \vspace{-1.5em}
-  \begin{quotation}
-  \noindent #2
-  \end{quotation}
+  \begin{quote}
+  #2
+  \end{quote}
 }
 
 % Suppresses the abstract title.
