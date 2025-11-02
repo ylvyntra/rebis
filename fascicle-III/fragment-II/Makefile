@@ -24,7 +24,6 @@ BIBTEX = bibtex
 default:
 	touch $(DOC).tex
 	$(MAKE) all
-	$(MAKE) view
 
 all: $(BUILD) $(PDF_OUTPUT)
 
@@ -35,18 +34,7 @@ $(BUILD):
 # Build the PDF (LuaLaTeX; run Biber only if bibliography.bib exists)
 BIBFILE := $(CONTENTS)/bibliography.bib
 
-$(DOC_BUILD).pdf: $(DOC).tex $(ENTRYFILE) $(wildcard $(BIBFILE)) | $(BUILD)
-	-$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex
-	@if [ -f "$(BIBFILE)" ]; then \
-		echo "Running Biber..."; \
-		biber --output-directory=$(BUILD) $(FILE_PREFIX) || true; \
-		$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex; \
-	fi
-	@if [ -f "$(DOC_BUILD).glo" ]; then \
-		echo "Running makeglossaries..."; \
-		makeglossaries -d $(BUILD) $(FILE_PREFIX) || true; \
-		$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex; \
-	fi
+$(DOC_BUILD).pdf: $(DOC).tex $(ENTRYFILE) | $(BUILD)
 	$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex
 
 # Copy PDF to current directory
@@ -75,10 +63,11 @@ glossary glossaries:
 
 # Update bibliography
 .PHONY: bib
-bib:
+bib: $(DOC_BUILD).pdf
 	@if [ -f "$(BIBFILE)" ]; then \
 		echo "Running Biber..."; \
 		biber --output-directory=$(BUILD) $(FILE_PREFIX); \
+		$(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) -aux-directory=$(BUILD) $(DOC).tex; \
 	else \
 		echo "Bibliography file not found: $(BIBFILE)"; \
 	fi
