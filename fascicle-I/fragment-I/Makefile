@@ -1,45 +1,70 @@
-# Makefile for AMS-Style Mathematical LaTeX Document
+# Contents directory
+CONTENTS = contents
+
+# Build directory
+BUILD = build
 
 # Document name
-DOC = fragment_I
+FILE_PREFIX = fragment_I
+DOC = $(CONTENTS)/$(FILE_PREFIX)
+DOC_BUILD = $(BUILD)/$(FILE_PREFIX)
+PDF_OUTPUT = $(FILE_PREFIX).pdf
+
+# File that LaTeX will look at first.
+ENTRYFILE = $(CONTENTS)/body.tex
 
 # LaTeX compiler
-# LATEX = pdflatex
 LATEX = lualatex
 LATEXFLAGS = -interaction=nonstopmode -halt-on-error -file-line-error -synctex=1
-BIBTEX = bibtex
+LATEXCMD = $(LATEX) $(LATEXFLAGS) -output-directory=$(BUILD) $(DOC).tex
 
 # Default target
-default:
-	touch $(DOC).tex
-	$(MAKE) all
-	$(MAKE) view
+all: $(BUILD) $(PDF_OUTPUT)
 
-all: $(DOC).pdf
+# Create build directory if it doesn't exist
+$(BUILD):
+	mkdir -p $(BUILD)
 
-# Build the PDF (LuaLaTeX; run BibTeX only if bibliography.bib exists)
-BIBFILE := bibliography.bib
+# Build the PDF (LuaLaTeX; run Biber only if bibliography.bib exists)
+BIBFILE := $(CONTENTS)/bibliography.bib
 
-$(DOC).pdf: $(DOC).tex body.tex $(wildcard $(BIBFILE))
-	-$(LATEX) $(LATEXFLAGS) $(DOC).tex
-	@if [ -f "$(BIBFILE)" ]; then \
-		echo "Running BibTeX..."; \
-		$(BIBTEX) $(DOC) || true; \
-		$(LATEX) $(LATEXFLAGS) $(DOC).tex; \
-	fi
-	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+$(DOC_BUILD).pdf: $(DOC).tex $(ENTRYFILE) | $(BUILD)
+	$(LATEXCMD)
+
+# Copy PDF to current directory
+$(PDF_OUTPUT): $(DOC_BUILD).pdf
+	cp $(DOC_BUILD).pdf $(PDF_OUTPUT)
 
 # Clean auxiliary files
 clean:
-	rm -f *.aux *.log *.bbl *.blg *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz
+	rm -f $(BUILD)/*.aux $(BUILD)/*.bcf $(BUILD)/*.log $(BUILD)/*.bbl $(BUILD)/*.blg $(BUILD)/*.out $(BUILD)/*.toc $(BUILD)/*.lof $(BUILD)/*.lot $(BUILD)/*.fls $(BUILD)/*.fdb_latexmk $(BUILD)/*.synctex.gz \
+		$(BUILD)/*.glo $(BUILD)/*.gls $(BUILD)/*.glg $(BUILD)/*.ist $(BUILD)/*.acn $(BUILD)/*.acr $(BUILD)/*.alg $(BUILD)/*.xdy $(BUILD)/*.xml $(BUILD)/*.pdf
 
 # Clean everything including PDF  
 distclean: clean
-	rm -f $(DOC).pdf
+	rm -f $(PDF_OUTPUT)
 
 # View the PDF
-view: $(DOC).pdf
-	open $(DOC).pdf
+view: $(PDF_OUTPUT)
+	open $(PDF_OUTPUT)
+
+# Build/update glossaries explicitly (on-demand)
+.PHONY: glossary glossaries
+glossary glossaries:
+	$(LATEXCMD)
+	makeglossaries -d $(BUILD) $(FILE_PREFIX)
+	$(LATEXCMD)
+
+# Update bibliography
+.PHONY: bib
+bib: $(DOC_BUILD).pdf
+	@if [ -f "$(BIBFILE)" ]; then \
+		echo "Running Biber..."; \
+		biber --output-directory=$(BUILD) $(FILE_PREFIX); \
+		$(LATEXCMD); \
+	else \
+		echo "Bibliography file not found: $(BIBFILE)"; \
+	fi
 
 # Force rebuild
 force:
@@ -48,7 +73,23 @@ force:
 
 # Check for LaTeX errors
 check:
-	$(LATEX) $(LATEXFLAGS) $(DOC).tex
+	$(LATEXCMD)
+
+# Display help
+.PHONY: help
+help:
+	@echo "Available targets:"
+	@echo "  all            Build PDF (default)"
+	@echo "  view           Open PDF in default viewer"
+	@echo "  bib            Run Biber and rebuild"
+	@echo "  glossary       Update glossaries and rebuild"
+	@echo "  force          Force rebuild by touching source"
+	@echo "  check          Check for LaTeX errors"
+	@echo "  clean          Remove auxiliary files"
+	@echo "  distclean      Remove all build artifacts"
+	@echo "  fonts-cache    Refresh LuaTeX font cache"
+	@echo "  math-test      Test mathematical typesetting"
+	@echo "  help           Display this message"
 
 # Test mathematical content
 math-test: check
@@ -64,4 +105,4 @@ math-test: check
 fonts-cache:
 	luaotfload-tool -u
 
-.PHONY: all clean distclean view force check math-test fonts-cache
+.PHONY: all clean distclean view force check math-test fonts-cache glossary glossaries bib help

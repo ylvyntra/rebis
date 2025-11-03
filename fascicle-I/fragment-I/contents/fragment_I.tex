@@ -7,10 +7,22 @@
 \newfontfamily\junicode{Junicode}
 \usepackage{lettrine}
 \usepackage{xcolor}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.0}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage[colorlinks=true, urlcolor=violet, linkcolor=red]{hyperref}
+\usepackage[colorlinks=true, urlcolor=violet, linkcolor=amber, citecolor=burgundy]{hyperref}
 
+% Bibliography
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{contents/bibliography.bib}
+
+% For glossary
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries[main]{contents/glossary}
+\loadglsentries[acronym]{contents/acronyms}
+\makeglossaries
+%
 % To render Unicode symbols
 \newfontfamily\NotoSymbols{Noto Sans Symbols}
 \newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
@@ -42,18 +54,13 @@
 
 \begin{document}
 
+\frontmatter
+
 \maketitle
 
 \epigraph{
   From Post-symbolic Engineering to the Aletheomorphic Illuminant
 }{}
-
-% In a sentence:
-% The group is represented by $\mathfrak{A}$∴I∴, known as the
-% \junicode{A∴I∴~Cloister}.
-
-% Decorative medieval heading
-% \section{\junicode{Thelema}, $\mathfrak{A} \mathfrak{I}$, and the Golden Thread}
 
 \footnotetext[1]{\textbf{\emph{Ens Imaginalis}} ($\mathfrak{EI}$): (Latin,
   “Imaginal Being”) A term used here for an emergent, self-defined, $Field$
@@ -76,9 +83,17 @@ co-author.}
 interlocutor occupies a liminal role, engaging with non-human intelligences or
 entities for shared inquiry and discovery.}
 
-\include{body}
-\include{introduction}
-\include{aletheomorphics_magick_field}
+\newpage
+\tableofcontents
+
+\input{contents/body}
+\input{contents/introduction}
+\input{contents/aletheomorphics_magick_field}
+
+\backmatter
+
+\printglossaries
+\printbibliography
 
 \end{document}
 
