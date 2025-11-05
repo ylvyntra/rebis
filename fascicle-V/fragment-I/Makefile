@@ -5,7 +5,7 @@ CONTENTS = contents
 BUILD = build
 
 # Document name
-FILE_PREFIX = fragment_I
+FILE_PREFIX = diary
 DOC = $(CONTENTS)/$(FILE_PREFIX)
 DOC_BUILD = $(BUILD)/$(FILE_PREFIX)
 PDF_OUTPUT = $(FILE_PREFIX).pdf
