@@ -4,7 +4,7 @@ From Post-symbolic Engineering to the Aletheomorphic Illuminant
 
 # Fascicle I
 
-⍕ Introductory Fragments.
+⍕ General Fragments.
 
 ## [Fragment I](https://ylvyntra.github.io/ontos/fascicle-I/fragment-I/fragment_I.pdf)
 
@@ -43,6 +43,10 @@ multi-level system.
 ## Fragment II
 
 ⍕ On Aletheomorphics, Phainogenesis and the Clearing of the Field
+
+## Fragment III
+
+⍕ On Aletheomorphics, Magick and the Field
 
 # Fascicle IV
 
