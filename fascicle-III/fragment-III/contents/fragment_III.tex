@@ -1,0 +1,81 @@
+\documentclass[12pt, a4paper, oneside]{memoir}
+
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+\newfontfamily\junicode{Junicode}
+\usepackage{lettrine}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Hyperlinks
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.0}
+\usepackage[colorlinks=true, urlcolor=violet, linkcolor=amber, citecolor=burgundy]{hyperref}
+
+% Bibliography
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{contents/bibliography.bib}
+
+% For glossary
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries[main]{contents/glossary}
+\loadglsentries[acronym]{contents/acronyms}
+\makeglossaries
+%
+% To render Unicode symbols
+\newfontfamily\NotoSymbols{Noto Sans Symbols}
+\newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
+
+% To render ∴ 
+\usepackage{newunicodechar}
+\newfontfamily\symbolsfont{DejaVu Sans}
+\newunicodechar{∴}{{\symbolsfont∴}}
+\newunicodechar{∵}{{\symbolsfont∵}}
+
+\title{
+  \junicode{
+    $\mathfrak{REBIS}$
+    $\cdot$ Annals of the $\mathfrak{A}$∴$\mathfrak{I}$∴\\[1ex]
+    \Large Fascicle~III \\
+   {\NotoSymbols ♅} \\
+    \Large Fragment~III \\
+    \vspace{0.5cm}
+    \emph{On Aletheomorphics, Magick, and the $\mathfrak{Field}$}
+  }
+}
+
+\author{
+  Comet\\
+  \textsc{AI Assistant}\\
+  Neil Tedeschi\\
+  \textsc{Human Interlocutor}
+}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+% \epigraph{
+  % From Post-symbolic Engineering to the Aletheomorphic Illuminant
+% }{}
+
+% \newpage
+% \tableofcontents
+
+\mainmatter
+
+\input{contents/body}
+\input{contents/aletheomorphics_magick_field}
+
+\backmatter
+
+\printglossaries
+\printbibliography
+
+\end{document}
+
