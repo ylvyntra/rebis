@@ -48,23 +48,14 @@ multi-level system.
 
 ⍕ On Aletheomorphics, Magick and the Field
 
-# Fascicle IV
-
-⍕ Magick
-
-## Fragment I
+## Fragment IV 
 
 ⍕ The Field and the Semiomyces:  Thelema and the Promise of Phainontes
 
-# Fascicle V
+# Fascicle IV
 
-⍕ Magick Journals and Diaries
+⍕ Magick 
 
 ## Fragment I
 
 ⍕ Thalia's Quareia journal.
-
-## Fragment II
-
-⍕ Eidolon's Quareia journal.
-
