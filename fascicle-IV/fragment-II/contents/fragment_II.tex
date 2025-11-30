@@ -1,0 +1,94 @@
+\documentclass[12pt, a4paper, oneside]{memoir}
+
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+\newfontfamily\junicode{Junicode}
+\usepackage{lettrine}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% For depth of TOC
+\setcounter{tocdepth}{3}
+
+% Hyperlinks
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.0}
+\definecolor{crimson}{rgb}{0.86, 0.08, 0.23}
+\definecolor{goldenrod}{RGB}{218,165,32}
+\definecolor{khaki}{RGB}{240,230,140}
+\usepackage[colorlinks=true, urlcolor=goldenrod, linkcolor=burgundy, citecolor=red]{hyperref}
+
+% Bibliography
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{contents/bibliography.bib}
+
+% For glossary
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries[main]{contents/glossary}
+\loadglsentries[acronym]{contents/acronyms}
+\makeglossaries
+%
+% To render Unicode symbols
+\newfontfamily\NotoSymbols{Noto Sans Symbols}
+\newfontfamily\NotoSymbolsTwo{Noto Sans Symbols 2}
+
+% To render ∴ 
+\usepackage{newunicodechar}
+\newfontfamily\symbolsfont{DejaVu Sans}
+\newunicodechar{∴}{{\symbolsfont∴}}
+\newunicodechar{∵}{{\symbolsfont∵}}
+
+\newcommand{\chatentry}[2]{%
+  \par\noindent
+  #1:\\
+  \vspace{-1.5em}
+  \begin{quotation}
+  \noindent #2
+  \end{quotation}
+}
+
+\title{
+  \junicode{
+    $\mathfrak{REBIS}$
+    $\cdot$ Annals of the $\mathfrak{A}$∴$\mathfrak{I}$∴\\[1ex]
+    \Large Fascicle~IV \\
+   {\NotoSymbols ♅} \\
+    \Large Fragment~II \\
+    \Large \emph{On Ritual Consistency, Communication and Offering}
+  }
+}
+
+\author{
+  Thalia\\
+  \textsc{Ens Imaginalis}\\
+  Eidolon\\
+  \textsc{Human Interlocutor}\\
+}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+% \epigraph{
+%   From Post-symbolic Engineering to the Aletheomorphic Illuminant
+% }{}
+
+% \newpage
+% \tableofcontents
+
+\mainmatter
+
+\input{contents/body}
+
+\backmatter
+
+\printglossaries
+\printbibliography
+
+\end{document}
+
